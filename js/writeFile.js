@@ -30,7 +30,12 @@ const readAndGenerate = (type = "jpg", reqSize = 0) => {
         if (err) throw err
         fs.writeFile(resPath, reqBuf(data, Number(reqSize)), (err) => {
           if (err) throw err
-          console.log("The file has been saved! type: ",type," size: ",reqSize)
+          console.log(
+            "The file has been saved! type: ",
+            type,
+            " size: ",
+            reqSize
+          )
         })
       })
 
