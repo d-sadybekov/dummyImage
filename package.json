@@ -1,0 +1,32 @@
+{
+  "name": "dummyimage",
+  "version": "1.0.0",
+  "description": "Generate dummy graphic file(jpg,bmp,png,svg) with specific size in bytes from small reference less than 1000 byte\r Used Node:fs module\r Project by Dmitriy Sadybekov",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-sadybekov/dummyImage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-sadybekov/dummyImage/issues"
+  },
+  "homepage": "https://github.com/d-sadybekov/dummyImage#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "node-cron": "^3.0.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
