@@ -3,7 +3,8 @@ import { Buffer } from "node:buffer"
 import { v4 as uuidv4 } from "uuid"
 
 const makeLink = (resultPath) => {
-  const myLink = "http://127.0.0.1:5000/" + resultPath.slice(9)
+  const myLink = "http://127.0.0.1:5000/" + resultPath
+  //const myLink = "http://iamtester.ru/" + resultPath
   return myLink
 }
 const reqBuf = (imgBuf, reqSize) => {
@@ -16,8 +17,9 @@ const srcPath = (type) => {
   return path
 }
 const resultPath = (type) => {
-  const path = "./result/" + uuidv4() + "." + type
-  return path
+ // const path = "./result/" + uuidv4() + "." + type
+ const path = "files/" + uuidv4() + "." + type
+ return path
 }
 
 const readAndGenerate = (type = "jpg", reqSize = 0) => {
@@ -25,7 +27,7 @@ const readAndGenerate = (type = "jpg", reqSize = 0) => {
   try {
     //53000000 is for 50.5mb, 32000000 is for 30.5mb
     if (reqSize >= 999 && reqSize <= 32000000 && k.includes(type)) {
-      const resPath = resultPath(type)
+      const resPath = '../'+ resultPath(type)
       fs.readFile(srcPath(type), (err, data) => {
         if (err) throw err
         fs.writeFile(resPath, reqBuf(data, Number(reqSize)), (err) => {

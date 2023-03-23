@@ -13,9 +13,13 @@ const limiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
 app.use(limiter)
-app.use(cors())
-app.use('/', express.static('result'));
-app.get("/", (req, res) => {
+//app.use(cors())
+app.use(cors({
+	credentials: true,
+	origin: 'https://iamtester.ru'
+}))
+app.use('/', express.static('../files'));
+app.get("/api", (req, res) => {
   try {
     const {type, size}=req.query
     const rng=readAndGenerate(type, size)
@@ -27,4 +31,5 @@ app.get("/", (req, res) => {
   }
 })
 sheduler.initScheduledJobs()
-app.listen(PORT, () => console.log("SERVER STARTED, PORT: " + PORT))
+//app.listen(PORT, () => console.log("SERVER STARTED, PORT: " + PORT))
+app.listen(PORT, 'localhost', () => console.log("SERVER STARTED, PORT: " + PORT))
