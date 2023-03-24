@@ -21,8 +21,9 @@ app.use(cors({
 app.use('/', express.static('../files'));
 app.get("/api", (req, res) => {
   try {
-    const {type, size}=req.query
-    const rng=readAndGenerate(type, size)
+    const {fileType, size}=req.query
+    console.log('filetype: ',fileType)
+    const rng=readAndGenerate(fileType, size)
     return res.status(200).json(rng)
 
     
@@ -31,5 +32,5 @@ app.get("/api", (req, res) => {
   }
 })
 sheduler.initScheduledJobs()
-//app.listen(PORT, () => console.log("SERVER STARTED, PORT: " + PORT))
-app.listen(PORT, 'localhost', () => console.log("SERVER STARTED, PORT: " + PORT))
+//app.listen(PORT, 'localhost', () => console.log("SERVER STARTED, PORT: " + PORT))
+app.listen(PORT, () => console.log("SERVER STARTED, PORT: " + PORT))
