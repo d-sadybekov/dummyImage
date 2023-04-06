@@ -3,7 +3,9 @@ import rateLimit from 'express-rate-limit'
 import cors from "cors"
 import readAndGenerate from "./js/writeFile.js"
 import * as sheduler from "./js/sheduler.js"
+import path from 'path'
 
+const __dirname = path.resolve();
 const PORT = 5000
 const app = express()
 const limiter = rateLimit({
@@ -18,7 +20,9 @@ app.use(cors({
 	credentials: true,
 	origin: 'https://iamtester.ru'
 }))
-app.use('/', express.static('../files'));
+const mypath=path.join(__dirname,'../files')
+console.log(mypath)
+app.use('/', express.static(mypath))
 app.get("/api", (req, res) => {
   try {
     const {fileType, size}=req.query
