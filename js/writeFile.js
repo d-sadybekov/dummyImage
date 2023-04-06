@@ -7,7 +7,7 @@ import moment from 'moment'
 
 const makeLink = (resultPath) => {
   const myLink = "http://127.0.0.1/" + resultPath.slice(3)
-  //const myLink = "http://iamtester.ru/" + resultPath
+  //const myLink = "http://iamtester.ru/" + resultPath.slice(3)
   return myLink
 }
 const reqBuf = (imgBuf, reqSize) => {
@@ -20,7 +20,7 @@ const srcPath = (type) => {
   return path
 }
 const resultPath = (type) => {
- // const path = "./result/" + uuidv4() + "." + type
+ // const path = "../files/" + uuidv4() + "." + type
  const path = "../files/" + uuidv4() + "." + type
  return path
 }
@@ -31,14 +31,14 @@ const readAndGenerate = (type = "jpg", reqSize = 0) => {
   try {
     //53000000 is for 50.5mb, 32000000 is for 30.5mb
     if (reqSize >= 999 && reqSize <= 32000000 && k.includes(type)) {
-      //const resPath = '../'+ resultPath(type)
+      
       const resPath = resultPath(type)
       fs.readFile(srcPath(type), (err, data) => {
         if (err) throw err
         fs.writeFile(resPath, reqBuf(data, Number(reqSize)), (err) => {
           if (err) throw err
           
-          console.log(moment(date, "DD MM YYYY hh:mm:ss"),
+          console.log(moment(date, "DD MM YYYY hh:mm:ss").utcOffset(5),
             " The file has been saved! type: ",
             type,
             " size: ",
